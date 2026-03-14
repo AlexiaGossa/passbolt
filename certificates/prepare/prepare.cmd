@@ -4,11 +4,24 @@ mkdir .\0_root\csr
 mkdir .\0_root\newcerts
 mkdir .\0_root\private
 
+type nul > .\0_root\certs\.gitkeep
+type nul > .\0_root\crl\.gitkeep
+type nul > .\0_root\csr\.gitkeep
+type nul > .\0_root\newcerts\.gitkeep
+type nul > .\0_root\private\.gitkeep
+
 mkdir .\1_intermediate\certs
 mkdir .\1_intermediate\crl
 mkdir .\1_intermediate\csr
 mkdir .\1_intermediate\newcerts
 mkdir .\1_intermediate\private
+
+type nul > .\1_intermediate\certs\.gitkeep
+type nul > .\1_intermediate\crl\.gitkeep
+type nul > .\1_intermediate\csr\.gitkeep
+type nul > .\1_intermediate\newcerts\.gitkeep
+type nul > .\1_intermediate\private\.gitkeep
+
 
 mkdir .\2_server
 
