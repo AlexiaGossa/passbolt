@@ -4,17 +4,17 @@ Procédure écrite pour Windows
 # Préparation des dossiers
 
 ## Option 1
-Vous récupérer les dossiers `0_root`, `1_intermediate` et `2_server` pour les adapter à vos besoins
+Vous récupérez les dossiers `0_root`, `1_intermediate` et `2_server` pour les adapter à vos besoins.
 
 ## Option 2
-Vous récupérer le contenu du dossier `prepare`, vous modifier les 3 fichiers de configuration pour les adapter à vos besoins et vous exécuter `prepare.cmd` afin de générer automatiquement toute l'arborescence.
+Vous récupérez le contenu du dossier `prepare`, vous modifiez les 3 fichiers de configuration pour les adapter à vos besoins et vous exécutez `prepare.cmd` afin de générer automatiquement toute l'arborescence.
 
 
 # Démarrage
 
 Comment procéder pour le traitement des certificats root, intermediate et server ?
 
-Vous placer votre ligne de commande à la racine des dossiers `0_root`, `1_intermediate` et `2_server`
+Vous placez votre ligne de commande à la racine des dossiers `0_root`, `1_intermediate` et `2_server`
 
 
 ## Si vous avez le binaire 64bits de OpenSSL, lancer les 3 lignes suivantes :
@@ -50,7 +50,7 @@ La phrase PEM : **AvionFilPuisseCahierEcranPapierSolChoix**
 > openssl req -config 0_root\root.conf -key 0_root\private\root.key.pem -new -x509 -days 10950 -sha256 -out 0_root\certs\root.cert.pem
 > 
 
-On peut contrôler
+On peut contrôler :
 > openssl x509 -in 0_root\certs\root.cert.pem -noout -text
 
 On voit :
@@ -72,11 +72,11 @@ La phrase de passe : **ClavierOnglesPhoneMarqueBleuRayuresTableau**
 > 
 
 
-On signe l'intermediate par la root
+On signe l'intermediate par la root :
 > openssl ca -config 0_root\root.conf -extensions v3_intermediate_ca -notext -in 1_intermediate\csr\intermediate.csr.pem -out 1_intermediate\certs\intermediate.cert.pem
 > 
 
-On peut contrôler
+On peut contrôler :
 > openssl x509 -in 1_intermediate\certs\intermediate.cert.pem -noout -text
 > 
 
@@ -100,7 +100,8 @@ On voit :
 
 
 # Etape 4 - On signe le certificat de "mon entreprise"
-Mais on peut aussi le voir, il est dans ".\2_server"
+
+On signe le certificat final pour notre ou nos serveurs :
 
 > openssl req -nodes -newkey rsa:2048 -batch -sha256 -keyout 2_server\wildcard.monentreprise.fr.key -out 2_server\wildcard.monentreprise.fr.csr -config 2_server\wildcard.monentreprise.fr.conf
 > 
@@ -108,11 +109,11 @@ Mais on peut aussi le voir, il est dans ".\2_server"
 > 
 
 
-On vérifie le certificat
+On vérifie le certificat :
 > openssl x509 -in 2_server\wildcard.monentreprise.fr.crt -noout -text
 > 
 
-On voit
+On voit :
 > 	CA:FALSE
 > 
 > 	Extended Key Usage: TLS Web Server Authentication
