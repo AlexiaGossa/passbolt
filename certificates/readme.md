@@ -122,7 +122,7 @@ On voit
 
 
 
-# Etape 5 - Utilisation des certicats
+# Etape 5 - Utilisation des certificats
 
 Pour Apache HTTPD, vous devez utiliser les 3 fichiers `ca-bundle.crt`, `wildcard.monentreprise.fr.crt` et `wildcard.monentreprise.fr.key`.
 
