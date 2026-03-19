@@ -119,14 +119,14 @@ Modifier `root` en `#root`
 >     mysql -u root -p
 
 4.3.2 - On créer un utilisateur administrateur avec du pouvoir  
->     CREATE USER '`master.db.admin.username`'@'%' IDENTIFIED BY '`master.db.admin.password`';  
->     GRANT ALL PRIVILEGES ON *.* TO '`master.db.admin.username`'@'%';  
->     GRANT USAGE ON *.* TO '`master.db.admin.username`'@'%' WITH GRANT OPTION;  
+> CREATE USER '`master.db.admin.username`'@'%' IDENTIFIED BY '`master.db.admin.password`';  
+> GRANT ALL PRIVILEGES ON *.* TO '`master.db.admin.username`'@'%';  
+> GRANT USAGE ON *.* TO '`master.db.admin.username`'@'%' WITH GRANT OPTION;  
  
 4.3.3 - Création de la base et de l’utilisateur passbolt  
->     CREATE DATABASE passbolt CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;  
->     CREATE USER 'passbolt'@'localhost' IDENTIFIED BY '`db.passbolt.password`';  
->     GRANT ALL PRIVILEGES ON passbolt.* TO 'passbolt'@'localhost';  
+> CREATE DATABASE passbolt CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;  
+> CREATE USER 'passbolt'@'localhost' IDENTIFIED BY '`db.passbolt.password`';  
+> GRANT ALL PRIVILEGES ON passbolt.* TO 'passbolt'@'localhost';  
 
 4.3.4 - On termine  
 >     FLUSH PRIVILEGES;  
