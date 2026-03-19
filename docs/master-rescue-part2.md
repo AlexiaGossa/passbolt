@@ -149,6 +149,32 @@ Modifier `root` en `#root`
 
 ## Etape 5 - Copie et modification de Passbolt
 
+On va maintenant synchroniser les différents dossiers de passbolt à partir du serveur Master (nous utilisons `master.ip` à titre d'exemple)  
+>     rsync -aAXHv root@192.168.1.1:/var/www/passbolt/ /var/www/passbolt/  
+>     rsync -aAXHv root@192.168.1.1:/etc/httpd/conf.d/passbolt.conf /etc/httpd/conf.d/passbolt.conf  
+>     rsync -aAXHv root@192.168.1.1:/usr/share/httpd/.gnupg/ /usr/share/httpd/.gnupg/  
+
+On doit maintenant modifier la config de apache httpd  
+> nano /etc/httpd/conf.d/passbolt.conf  
+
+On ne modifie que la ligne ServerName en `passbolt-rescue.url` (mais sans https://)
+>    ServerName              pass-rescue.monentreprise.fr  
+
+On fait de même avec la config de passbolt  
+>     sudo su -s /bin/bash apache  
+>     cd /var/www/passbolt  
+>     nano config/passbolt.php  
+
+On doit modifier une seule ligne  
+> >     'fullBaseUrl' => env('APP_FULL_BASE_URL', 'https://pass.monentreprise.fr')  
+> devient  
+> >     'fullBaseUrl' => env('APP_FULL_BASE_URL', 'https://pass-rescue.monentreprise.fr')  
+
+On quitte l'utilisateur apache.  
+>     exit  
+
+On redémarre apache httpd  
+>     systemctl restart httpd  
 
 
 
