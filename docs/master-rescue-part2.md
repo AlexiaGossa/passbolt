@@ -98,8 +98,8 @@ Modifier `root` en `#root`
 >     firewall-cmd --permanent --add-service=mysql  
 >     firewall-cmd --reload  
 
-### 3.7 - Ajout de Git et de Composer
->     dnf install git composer -y
+### 3.7 - Ajout de Git, Unzip et de Composer
+>     dnf install git unzip composer -y
 
 
 
@@ -149,36 +149,87 @@ Modifier `root` en `#root`
 
 ## Etape 5 - Copie et modification de Passbolt
 
-On va maintenant synchroniser les différents dossiers de passbolt à partir du serveur Master (nous utilisons `master.ip` à titre d'exemple)  
+### 5.1 - On va maintenant synchroniser les différents dossiers de passbolt à partir du serveur Master (nous utilisons `master.ip` à titre d'exemple)  
 >     rsync -aAXHv root@192.168.1.1:/var/www/passbolt/ /var/www/passbolt/  
 >     rsync -aAXHv root@192.168.1.1:/etc/httpd/conf.d/passbolt.conf /etc/httpd/conf.d/passbolt.conf  
 >     rsync -aAXHv root@192.168.1.1:/usr/share/httpd/.gnupg/ /usr/share/httpd/.gnupg/  
 
-On doit maintenant modifier la config de apache httpd  
+### 5.2 - On doit maintenant modifier la config de apache httpd  
 > nano /etc/httpd/conf.d/passbolt.conf  
 
-On ne modifie que la ligne ServerName en `passbolt-rescue.url` (mais sans https://)
+### 5.3 - On ne modifie que la ligne ServerName en `passbolt-rescue.url` (mais sans https://)
 >    ServerName              pass-rescue.monentreprise.fr  
 
-On fait de même avec la config de passbolt  
+### 5.4 - On fait de même avec la config de passbolt  
 >     sudo su -s /bin/bash apache  
 >     cd /var/www/passbolt  
 >     nano config/passbolt.php  
 
-On doit modifier une seule ligne  
+### 5.5 - On doit modifier une seule ligne  
 > >     'fullBaseUrl' => env('APP_FULL_BASE_URL', 'https://pass.monentreprise.fr')  
 > devient  
 > >     'fullBaseUrl' => env('APP_FULL_BASE_URL', 'https://pass-rescue.monentreprise.fr')  
 
-On quitte l'utilisateur apache.  
+### 5.6 - On quitte l'utilisateur apache.  
 >     exit  
 
-On redémarre apache httpd  
+### 5.7 - On redémarre apache httpd  
 >     systemctl restart httpd  
 
+### 5.8 - On récupère la partie rescue de ce GitHub  
+>     cd /var/www
+>     mkdir passbolt-rescue
+>     cd passbolt-rescue
+>     curl -L https://github.com/AlexiaGossa/passbolt/archive/refs/heads/main.zip -o passbolt.zip
+>     unzip ./passbolt.zip 'passbolt-main/server-rescue/*'
+>     cp -rf ./passbolt-main/server-rescue/* /var/www/passbolt/
+>     cd /var/www
+>     rm -rf ./passbolt-rescue
+>     chown -R apache:apache /var/www/passbolt/webroot/rescue.php
+>     chmod g+s /var/www/passbolt/webroot/rescue.php
+>     chmod -R 775 /var/www/passbolt/webroot/rescue.php
+>     chown -R apache:apache /var/www/passbolt/rescue
+>     chmod g+s /var/www/passbolt/rescue
+>     chmod -R 775 /var/www/passbolt/rescue
+>     cd /var/www/passbolt
 
+### 5.9 - Modification du script de copie
+>     sudo su -s /bin/bash apache  
+>     cd /var/www/passbolt  
+>     nano rescue/master2rescue.sh  
 
+On modifie les éléments suivants  
+> DB_REMOTE_HOST="`master.ip`"  
+> DB_REMOTE_PASSWORD="`master.db.root.password`"  
+> DB_LOCAL_PASSWORD="`rescue.db.root.password`"  
 
-# A suivre...
+On quitte l'utilisateur apache.  
+>     exit
+
+### 5.10 - Ajout de la copie automatique
+
+Il ne reste qu’à activer le cron pour gérer la copie de la base de données Master  
+>     touch /var/www/passbolt/rescue/rescue.log
+
+On édite le cron pour l'utilisateur root avec nano (pour les allergiques à vim comme moi)  
+>     export VISUAL=nano; crontab -e  
+
+On ajoute cette ligne  
+>     */30 * * * * /var/www/passbolt/rescue/master2rescue.sh > /var/www/passbolt/rescue/rescue.log
+
+La copie se fera 2 fois par heure, toutes les 30 minutes, donc à XXh00 et à XXh30.  
+
+## 6 - C'est fini !
+Notre rescue est prêt.  
+
+> Pour le tester, il faut éteindre le master...  
+> On peut se connecter sur notre site de rescue à l'adresse `passbolt-rescue.url`  
+> Mais cela ne fonctionnera pas car il va nous envoyer un email mais nous avons une page de rescue pour aller directement sur la page de récupération.  
+> `passbolt-rescue.url`/rescue.php  
+> 
+> Par exemple : https://pass-rescue.monentreprise.fr/rescue.php  
+
+**Cette page permet de récupérer un compte !**  
+**Donc elle ne doit pas accessible sur internet et donc accessible uniquement en réseau local.**  
 
 
