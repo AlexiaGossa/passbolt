@@ -1,8 +1,8 @@
 #!/bin/sh
 DB_REMOTE_HOST="192.168.1.1"
-DB_REMOTE_USERNAME="passbolt-rescue-reader"
+DB_REMOTE_USERNAME="passbolt-rescue"
 DB_REMOTE_PASSWORD="very-secret-password"
-DB_LOCAL_USERNAME="passbolt-rescue-writer"
+DB_LOCAL_USERNAME="passbolt-rescue"
 DB_LOCAL_PASSWORD="very-secret-password"
 BIN_MYSQL="/usr/bin/mysql"
 BIN_MYSQLDUMP="/usr/bin/mysqldump"
