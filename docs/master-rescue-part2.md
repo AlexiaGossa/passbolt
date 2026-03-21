@@ -200,8 +200,8 @@ Modifier `root` en `#root`
 
 On modifie les éléments suivants  
 > DB_REMOTE_HOST="`master.ip`"  
-> DB_REMOTE_PASSWORD="`master.db.root.password`"  
-> DB_LOCAL_PASSWORD="`rescue.db.root.password`"  
+> DB_REMOTE_PASSWORD="`db.passbolt-rescue.password`"  
+> DB_LOCAL_PASSWORD="`db.passbolt-rescue.password`"  
 
 On quitte l'utilisateur apache.  
 >     exit
