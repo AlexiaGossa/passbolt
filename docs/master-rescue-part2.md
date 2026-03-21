@@ -192,6 +192,7 @@ Modifier `root` en `#root`
 >     chmod g+s /var/www/passbolt/rescue
 >     chmod -R 775 /var/www/passbolt/rescue
 >     cd /var/www/passbolt
+>     chmod +x /var/www/passbolt/rescue/master2rescue.sh
 
 ### 5.9 - Modification du script de copie
 >     sudo su -s /bin/bash apache  
@@ -220,9 +221,12 @@ On ajoute cette ligne
 La copie se fera 2 fois par heure, toutes les 30 minutes, donc à XXh00 et à XXh30.  
 
 ## 6 - C'est fini !
-Notre rescue est prêt.  
+Notre rescue est prêt mais il faut attendre au moins 30 minutes pour qu'il y ait une réplication.  
+Sinon nous pouvons lancer manuellement le script :  
+>     /var/www/passbolt/rescue/master2rescue.sh
 
-> Pour le tester, il faut éteindre le master...  
+
+### Pour le tester, il faut éteindre le master...  
 > On peut se connecter sur notre site de rescue à l'adresse `passbolt-rescue.url`  
 > Mais cela ne fonctionnera pas car il va nous envoyer un email mais nous avons une page de rescue pour aller directement sur la page de récupération.  
 > `passbolt-rescue.url`/rescue.php  
