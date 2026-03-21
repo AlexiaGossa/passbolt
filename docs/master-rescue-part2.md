@@ -129,8 +129,8 @@ Modifier `root` en `#root`
 
 4.3.2 - On créer un utilisateur administrateur avec du pouvoir  
 > CREATE USER '`rescue.db.admin.username`'@'%' IDENTIFIED BY '`rescue.db.admin.password`';  
-> GRANT ALL PRIVILEGES ON *.* TO '`rescue.db.admin.username`'@'%';  
-> GRANT USAGE ON *.* TO '`rescue.db.admin.username`'@'%' WITH GRANT OPTION;  
+> GRANT ALL PRIVILEGES ON \*.\* TO '`rescue.db.admin.username`'@'%';  
+> GRANT USAGE ON \*.\* TO '`rescue.db.admin.username`'@'%' WITH GRANT OPTION;  
  
 4.3.3 - Création de la base et de l’utilisateur passbolt  
 > CREATE DATABASE passbolt CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;  
