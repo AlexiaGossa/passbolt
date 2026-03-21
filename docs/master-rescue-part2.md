@@ -227,9 +227,9 @@ Sinon nous pouvons lancer manuellement le script :
 
 
 ### Pour le tester, il faut éteindre le master...  
-> Il faut se connecter sur notre site de rescue à l'adresse `passbolt-rescue.url`  
-> Il faut demander à récupérer notre compte.
-> Mais cela ne fonctionnera pas car le serveur "Rescue" n'a pas le droit d'envoyer des emails. Afin de palier à cela, nous avons une page de récupération.  
+> 1 - Il faut se connecter sur notre site de rescue à l'adresse `passbolt-rescue.url`  
+> 2 - Il faut demander à récupérer notre compte.
+> 3 - Mais cela ne fonctionnera pas car le serveur "Rescue" n'a pas le droit d'envoyer des emails. Afin de palier à cela, nous avons une page de récupération.  
 > `passbolt-rescue.url`/rescue.php  
 > 
 > Par exemple : https://pass-rescue.monentreprise.fr/rescue.php  
