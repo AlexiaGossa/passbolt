@@ -183,8 +183,8 @@ Modifier `root` en `#root`
 Par exemple `4E2198BF7906461E5806ED90B3826EACF2AEE747`  
 
 On copie la clef
->     gpg --armor --export-secret-keys contact@monentreprise.fr > /var/www/passbolt/config/gpg/serverkey_private.asc
->     gpg --armor --export contact@monentreprise.fr > /var/www/passbolt/config/gpg/serverkey.asc
+> gpg --armor --export-secret-keys `passbolt.user.email` > /var/www/passbolt/config/gpg/serverkey_private.asc  
+> gpg --armor --export `passbolt.user.email` > /var/www/passbolt/config/gpg/serverkey.asc  
 
 ### 5.5 - Installation de Passbolt *(utilisateur apache)*
 >     cd /var/www/passbolt  
