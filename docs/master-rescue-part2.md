@@ -233,7 +233,9 @@ Sinon nous pouvons lancer manuellement le script :
 > 
 > Par exemple : https://pass-rescue.monentreprise.fr/rescue.php  
 
-**Cette page permet de récupérer un compte !**  
-**Donc elle ne doit pas accessible sur internet et donc accessible uniquement en réseau local.**  
+**Points importants**  
+**1 - Cette page permet de récupérer un compte !**  
+**De ce fait, elle ne doit pas accessible sur internet mais accessible uniquement en réseau local.**  
+**2 - Il faut utiliser un autre navigateur pour vous connecter sur le serveur "Rescue" afin d'éviter de perdre votre session sur le serveur "Master". A noter que la navigation privée ne fonctionne pas avec les extensions.**
 
 
