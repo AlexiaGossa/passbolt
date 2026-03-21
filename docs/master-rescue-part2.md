@@ -138,7 +138,7 @@ Modifier `root` en `#root`
 > GRANT ALL PRIVILEGES ON passbolt.* TO 'passbolt'@'localhost';  
 
 4.3.4 - Création de l’utilisateur de rescue  
-> CREATE USER 'passbolt-rescue'@'`rescue.ip`' IDENTIFIED BY 'db.passbolt-rescue.password';  
+> CREATE USER 'passbolt-rescue'@'localhost' IDENTIFIED BY 'db.passbolt-rescue.password';  
 > GRANT ALL PRIVILEGES ON passbolt.* TO 'passbolt-rescue'@'localhost';  
 
 
