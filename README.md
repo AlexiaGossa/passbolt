@@ -13,6 +13,10 @@ Installation d'un serveur "Master" accessible depuis internet et d'un serveur "R
 https://github.com/AlexiaGossa/passbolt/blob/main/docs/master-rescue-part1.md  
 https://github.com/AlexiaGossa/passbolt/blob/main/docs/master-rescue-part2.md  
 
+### Attention
+Le serveur Rescue, même s'il permet de modifier des mots passe ou d'en ajouter, il faut seulement l'utiliser en lecture seule et ne rien modifier dessus. Pourquoi ? Lorsque le Master va revenir en ligne, toutes les modifications du Rescue seront perdues !
+
+**Le serveur Rescue n'est là qu'en secours ultime pour continuer à consulter ses mots de passe en cas de défaillance grave.**
 
 ## Scénario 3 - Cluster Master et Serveur Rescue
 Installation d'un cluster de 3 (ou plus) serveurs "Masters" accessibles depuis internet et d'un serveur "Rescue" accessible en local si jamais le serveur "Master" tombe en panne.  
