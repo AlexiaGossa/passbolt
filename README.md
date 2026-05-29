@@ -24,6 +24,9 @@ Installation d'un cluster de 3 (ou plus) serveurs "Masters" accessibles depuis i
 
 **Attention :** Le mode cluster nécessite l'utilisation du HAproxy (ou équivalent).  
 
+## Mise à jour de votre ou vos serveurs Passbolt
+Ce document explique comment faire rapidement une mise à jour pour Passbolt
+https://github.com/AlexiaGossa/passbolt/blob/main/docs/update.md
 
 ## Important  
 
