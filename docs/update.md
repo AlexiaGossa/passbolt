@@ -5,7 +5,7 @@
 - on utilise Apache HTTPD
 
 ## Préparation
-Afin de mettre à jour les serveurs hébergés de Passbolt, il faut procéder sur tous les serveurs en même temps.
+Afin de mettre à jour nos serveurs hébergés de Passbolt, il faut procéder sur tous les serveurs en même temps.
 
 
 ## Mise à jour vers la dernière version
